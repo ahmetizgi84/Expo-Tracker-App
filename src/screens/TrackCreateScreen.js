@@ -5,11 +5,14 @@ import Map from "../components/Map";
 import { Context as LocationContext } from "../context/LocationContext";
 import useLocation from "../hooks/useLocation";
 import { useFocusEffect } from "@react-navigation/native";
+import TrackForm from "../components/TrackForm";
 
 const TrackCreateScreen = ({ navigation }) => {
-  const { addLocation } = useContext(LocationContext);
+  const { state, addLocation } = useContext(LocationContext);
   const [isFocused, setIsFocused] = useState(true);
-  const [err] = useLocation(isFocused, addLocation);
+  const [err] = useLocation(isFocused, (location) => {
+    addLocation(location, state.recording);
+  });
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("blur", () => {
@@ -26,10 +29,10 @@ const TrackCreateScreen = ({ navigation }) => {
   );
 
   return (
-    <View>
-      <Text> create map screen</Text>
+    <View style={{ flex: 1 }}>
       <Map />
       {err ? <Text>Please enable location services</Text> : null}
+      <TrackForm />
     </View>
   );
 };
