@@ -1,5 +1,6 @@
 import axios from "axios";
+import { NGROK_LINK } from "../../app.config";
 
 export default axios.create({
-  baseURL: "http://8e7121079d4c.ngrok.io",
+  baseURL: NGROK_LINK,
 });
