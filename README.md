@@ -49,6 +49,6 @@
 
 ## reset user permission decision
 
-- C:\Users\"username"\AppData\Local\Android\Sdk\platform-tools in this directory run command below
+- C:\Users\username\AppData\Local\Android\Sdk\platform-tools in this directory run command below
 
 - "adb shell pm reset-permissions" : run this command in command prompt
