@@ -1,13 +1,29 @@
 import "../_mockLocations";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Map from "../components/Map";
 import { Context as LocationContext } from "../context/LocationContext";
 import useLocation from "../hooks/useLocation";
+import { useFocusEffect } from "@react-navigation/native";
 
-const TrackCreateScreen = () => {
+const TrackCreateScreen = ({ navigation }) => {
   const { addLocation } = useContext(LocationContext);
-  const [err] = useLocation(addLocation);
+  const [isFocused, setIsFocused] = useState(true);
+  const [err] = useLocation(isFocused, addLocation);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("blur", () => {
+      setIsFocused(false);
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      setIsFocused(true);
+    }, [])
+  );
 
   return (
     <View>
