@@ -1,37 +1,14 @@
-//import "../_mockLocations";
-import React, { useEffect, useState } from "react";
+import "../_mockLocations";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Map from "../components/Map";
-import {
-  requestPermissionsAsync,
-  watchPositionAsync,
-  Accuracy,
-} from "expo-location";
+import { Context as LocationContext } from "../context/LocationContext";
+import useLocation from "../hooks/useLocation";
 
 const TrackCreateScreen = () => {
-  const [err, setErr] = useState(null);
+  const { addLocation } = useContext(LocationContext);
+  const [err] = useLocation(addLocation);
 
-  const startWatching = async () => {
-    try {
-      await requestPermissionsAsync();
-      await watchPositionAsync(
-        {
-          accuracy: Accuracy.BestForNavigation,
-          timeInterval: 1000, // saniyede 1 günceleme yap
-          distanceInterval: 10, // 10 metrede bir güncelleme yap
-        },
-        (location) => {
-          console.log(location);
-        }
-      );
-    } catch (e) {
-      setErr(e);
-    }
-  };
-
-  useEffect(() => {
-    startWatching();
-  }, []);
   return (
     <View>
       <Text> create map screen</Text>

@@ -1,14 +1,15 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import MapView, { Polyline } from "react-native-maps";
+import React, { useContext } from "react";
+import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import MapView, { Polyline, Circle } from "react-native-maps";
+import { Context as LocationContext } from "../context/LocationContext";
 
 const Map = () => {
-  let points = [];
-  for (let index = 0; index < 20; index++) {
-    points.push({
-      latitude: 37.33233 + index * 0.001,
-      longitude: -122.03121 + index * 0.001,
-    });
+  const {
+    state: { currentLocation },
+  } = useContext(LocationContext);
+
+  if (!currentLocation) {
+    return <ActivityIndicator size="large" style={{ marginTop: 200 }} />;
   }
 
   return (
@@ -16,13 +17,27 @@ const Map = () => {
       <MapView
         style={styles.map}
         initialRegion={{
-          latitude: 37.33233,
-          longitude: -122.03121,
+          //latitude: 37.019068,
+          //longitude: 35.2891644,
+          ...currentLocation.coords,
           latitudeDelta: 0.01,
           longitudeDelta: 0.01,
         }}
+        // region haritayı da günceller
+        /*
+        region={{
+          ...currentLocation.coords,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+        }}
+        */
       >
-        <Polyline coordinates={points} />
+        <Circle
+          center={currentLocation.coords}
+          radius={20}
+          strokeColor="rgba(158, 158, 255, 1.0)"
+          fillColor="rgba(158, 158, 255, 0.3)"
+        />
       </MapView>
     </View>
   );
