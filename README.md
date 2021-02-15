@@ -6,6 +6,8 @@
 - Axios
 - Async-Storage
 - React-Native-Elements
+- react-native-maps
+- expo-location
 
 ## BackEnd
 
