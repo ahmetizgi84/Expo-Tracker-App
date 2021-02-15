@@ -13,22 +13,33 @@ import SignupScreen from "./src/screens/SignupScreen";
 import TrackCreateScreen from "./src/screens/TrackCreateScreen";
 import TrackDetailScreen from "./src/screens/TrackDetailScreen";
 import TrackListScreen from "./src/screens/TrackListScreen";
+import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 
 import { Provider as AuthProvider } from "./src/context/AuthContext";
 
-import { navigationRef } from "./src/navigationRef";
+import { navigationRef, isReadyRef } from "./src/navigationRef";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function App() {
+  React.useEffect(() => {
+    return () => {
+      isReadyRef.current = false;
+    };
+  }, []);
   return (
     <AuthProvider>
       <SafeAreaView style={{ flex: 1 }}>
         <StatusBar barStyle="light-content" backgroundColor="#000" />
-        <NavigationContainer ref={navigationRef}>
+        <NavigationContainer
+          ref={navigationRef}
+          onReady={() => {
+            isReadyRef.current = true;
+          }}
+        >
           <Stack.Navigator
-            initialRouteName="Signup"
+            //initialRouteName="Signup"
             headerMode="none"
             screenOptions={{
               gestureEnabled: false,
@@ -36,6 +47,7 @@ function App() {
               headerShown: false,
             }}
           >
+            <Stack.Screen name="ResolveAuth" component={ResolveAuthScreen} />
             <Stack.Screen name="Signup" component={SignupScreen} />
             <Stack.Screen name="Signin" component={SigninScreen} />
 
