@@ -52,3 +52,7 @@
 - C:\Users\username\AppData\Local\Android\Sdk\platform-tools in this directory run command below
 
 - "adb shell pm reset-permissions" : run this command in command prompt
+
+| ![Expo-Tracker-App](https://github.com/ahmetizgi84/Expo-Food-App/blob/master/screenshots/track_list.png?raw=true) | ![Expo-Tracker-App](https://github.com/ahmetizgi84/Expo-Food-App/blob/master/screenshots/track_detail.png?raw=true) |
+
+| ![Expo-Tracker-App](https://github.com/ahmetizgi84/Expo-Food-App/blob/master/screenshots/start_tracking.png?raw=true) | ![Expo-Tracker-App](https://github.com/ahmetizgi84/Expo-Food-App/blob/master/screenshots/stop_tracking.png?raw=true) |

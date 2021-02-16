@@ -16,9 +16,9 @@ const Map = () => {
     <MapView
       style={styles.map}
       initialRegion={{
-        latitude: 37.019068,
-        longitude: 35.2891644,
-        //...currentLocation.coords,
+        //latitude: 37.33233141,
+        //longitude: -122.0312186,
+        ...currentLocation.coords,
         latitudeDelta: 0.01,
         longitudeDelta: 0.01,
       }}
@@ -34,8 +34,8 @@ const Map = () => {
       <Circle
         center={currentLocation.coords}
         radius={20}
-        strokeColor="rgba(158, 158, 255, 1.0)"
-        fillColor="rgba(158, 158, 255, 0.3)"
+        strokeColor="rgba(233, 30, 99, 1.0)"
+        fillColor="rgba(233, 30, 99, 0.5)"
       />
 
       <Polyline coordinates={locations.map((loc) => loc.coords)} />

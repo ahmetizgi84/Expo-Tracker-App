@@ -6,6 +6,7 @@ import {
   TransitionPresets,
 } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FontAwesome } from "@expo/vector-icons";
 
 import AccountScreen from "./src/screens/AccountScreen";
 import SigninScreen from "./src/screens/SigninScreen";
@@ -72,23 +73,58 @@ export default App;
 
 function MainFlow() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="StackFlow" component={TrackListAndDetailFlow} />
-      <Tab.Screen name="Create" component={TrackCreateScreen} />
-      <Tab.Screen name="Account" component={AccountScreen} />
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: "#e91e63",
+      }}
+    >
+      <Tab.Screen
+        name="StackFlow"
+        component={TrackListAndDetailFlow}
+        options={{
+          title: "Track List",
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="th-list" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Create"
+        component={TrackCreateScreen}
+        options={{
+          title: "Add Track",
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="plus" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Account"
+        component={AccountScreen}
+        options={{
+          title: "Account",
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="gears" color={color} size={size} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
 
 function TrackListAndDetailFlow() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerTitleAlign: "center" }}>
       <Stack.Screen
         name="List"
         component={TrackListScreen}
-        options={{ headerShown: false }}
+        options={{ headerLeft: null, title: "Track List" }}
       />
-      <Stack.Screen name="Detail" component={TrackDetailScreen} />
+      <Stack.Screen
+        name="Detail"
+        component={TrackDetailScreen}
+        options={{ title: "Track Details" }}
+      />
     </Stack.Navigator>
   );
 }

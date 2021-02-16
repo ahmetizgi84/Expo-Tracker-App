@@ -8,7 +8,7 @@ const AccountScreen = () => {
   const { signout } = useContext(AuthContext);
   return (
     <>
-      <Text>Account Screen</Text>
+      <Text style={styles.title}>Account Screen</Text>
       <Spacer />
       <Button title="Sign Out" onPress={signout} />
     </>
@@ -17,4 +17,8 @@ const AccountScreen = () => {
 
 export default AccountScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 36,
+  },
+});
