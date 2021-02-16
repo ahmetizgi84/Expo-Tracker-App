@@ -17,6 +17,7 @@ import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 
 import { Provider as AuthProvider } from "./src/context/AuthContext";
 import { Provider as LocationProvider } from "./src/context/LocationContext";
+import { Provider as TrackProvider } from "./src/context/TrackContext";
 
 import { navigationRef, isReadyRef } from "./src/navigationRef";
 
@@ -30,35 +31,40 @@ function App() {
     };
   }, []);
   return (
-    <LocationProvider>
-      <AuthProvider>
-        <SafeAreaView style={{ flex: 1 }}>
-          <StatusBar barStyle="light-content" backgroundColor="#000" />
-          <NavigationContainer
-            ref={navigationRef}
-            onReady={() => {
-              isReadyRef.current = true;
-            }}
-          >
-            <Stack.Navigator
-              //initialRouteName="Signup"
-              headerMode="none"
-              screenOptions={{
-                gestureEnabled: false,
-                ...TransitionPresets.SlideFromRightIOS,
-                headerShown: false,
+    <TrackProvider>
+      <LocationProvider>
+        <AuthProvider>
+          <SafeAreaView style={{ flex: 1 }}>
+            <StatusBar barStyle="light-content" backgroundColor="#000" />
+            <NavigationContainer
+              ref={navigationRef}
+              onReady={() => {
+                isReadyRef.current = true;
               }}
             >
-              <Stack.Screen name="ResolveAuth" component={ResolveAuthScreen} />
-              <Stack.Screen name="Signup" component={SignupScreen} />
-              <Stack.Screen name="Signin" component={SigninScreen} />
+              <Stack.Navigator
+                //initialRouteName="Signup"
+                headerMode="none"
+                screenOptions={{
+                  gestureEnabled: false,
+                  ...TransitionPresets.SlideFromRightIOS,
+                  headerShown: false,
+                }}
+              >
+                <Stack.Screen
+                  name="ResolveAuth"
+                  component={ResolveAuthScreen}
+                />
+                <Stack.Screen name="Signup" component={SignupScreen} />
+                <Stack.Screen name="Signin" component={SigninScreen} />
 
-              <Stack.Screen name="MainFlow" component={MainFlow} />
-            </Stack.Navigator>
-          </NavigationContainer>
-        </SafeAreaView>
-      </AuthProvider>
-    </LocationProvider>
+                <Stack.Screen name="MainFlow" component={MainFlow} />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </SafeAreaView>
+        </AuthProvider>
+      </LocationProvider>
+    </TrackProvider>
   );
 }
 

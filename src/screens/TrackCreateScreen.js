@@ -8,15 +8,18 @@ import { useFocusEffect } from "@react-navigation/native";
 import TrackForm from "../components/TrackForm";
 
 const TrackCreateScreen = ({ navigation }) => {
-  const { state, addLocation } = useContext(LocationContext);
+  const {
+    state: { recording },
+    addLocation,
+  } = useContext(LocationContext);
   const callback = useCallback(
     (location) => {
-      addLocation(location, state.recording);
+      addLocation(location, recording);
     },
-    [state.recording]
+    [recording]
   );
   const [isFocused, setIsFocused] = useState(true);
-  const [err] = useLocation(isFocused, callback);
+  const [err] = useLocation(isFocused || recording, callback);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("blur", () => {
