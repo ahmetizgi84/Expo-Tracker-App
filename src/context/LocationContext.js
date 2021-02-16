@@ -28,7 +28,7 @@ const stopRecording = (dispatch) => () => {
   dispatch({ type: "stop_recording" });
 };
 const addLocation = (dispatch) => (location, recording) => {
-  console.log("tracking...");
+  //console.log("tracking...");
   dispatch({ type: "add_current_location", payload: location });
   if (recording) {
     dispatch({ type: "add_location", payload: location });

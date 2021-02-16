@@ -1,5 +1,5 @@
 import "../_mockLocations";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Map from "../components/Map";
 import { Context as LocationContext } from "../context/LocationContext";
@@ -9,10 +9,14 @@ import TrackForm from "../components/TrackForm";
 
 const TrackCreateScreen = ({ navigation }) => {
   const { state, addLocation } = useContext(LocationContext);
+  const callback = useCallback(
+    (location) => {
+      addLocation(location, state.recording);
+    },
+    [state.recording]
+  );
   const [isFocused, setIsFocused] = useState(true);
-  const [err] = useLocation(isFocused, (location) => {
-    addLocation(location, state.recording);
-  });
+  const [err] = useLocation(isFocused, callback);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("blur", () => {
