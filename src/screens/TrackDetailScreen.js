@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Context as TrackContext } from "../context/TrackContext";
 
-const TrackDetailScreen = () => {
+const TrackDetailScreen = ({ route }) => {
+  const { state } = useContext(TrackContext);
+
+  const { _id } = route.params;
+
+  const track = state.find((t) => t._id === _id);
+
   return (
     <View>
-      <Text>Track Detail Screen</Text>
+      <Text style={styles.text}> {track.name} </Text>
     </View>
   );
 };
 
 export default TrackDetailScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 36,
+  },
+});
