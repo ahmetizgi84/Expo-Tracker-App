@@ -53,6 +53,6 @@
 
 - "adb shell pm reset-permissions" : run this command in command prompt
 
-| ![Expo-Tracker-App](https://github.com/ahmetizgi84/Expo-Food-App/blob/master/screenshots/track_list.png?raw=true) | ![Expo-Tracker-App](https://github.com/ahmetizgi84/Expo-Food-App/blob/master/screenshots/track_detail.png?raw=true) |
+| ![Expo-Tracker-App](https://github.com/ahmetizgi84/Expo-Tracker-App/blob/master/screenshots/track_list.png?raw=true) | ![Expo-Tracker-App](https://github.com/ahmetizgi84/Expo-Tracker-App/blob/master/screenshots/track_detail.png?raw=true) |
 
-| ![Expo-Tracker-App](https://github.com/ahmetizgi84/Expo-Food-App/blob/master/screenshots/start_tracking.png?raw=true) | ![Expo-Tracker-App](https://github.com/ahmetizgi84/Expo-Food-App/blob/master/screenshots/stop_tracking.png?raw=true) |
+| ![Expo-Tracker-App](https://github.com/ahmetizgi84/Expo-Tracker-App/blob/master/screenshots/start_tracking.png?raw=true) | ![Expo-Tracker-App](https://github.com/ahmetizgi84/Expo-Tracker-App/blob/master/screenshots/stop_tracking.png?raw=true) |
