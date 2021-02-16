@@ -1,5 +1,4 @@
-import React, { useEffect, useContext } from "react";
-import { Text, View } from "react-native";
+import { useEffect, useContext } from "react";
 import { Context as AuthContext } from "../context/AuthContext";
 
 export const ResolveAuthScreen = () => {
@@ -10,12 +9,6 @@ export const ResolveAuthScreen = () => {
   }, []);
 
   return null;
-
-  // return (
-  //   <View>
-  //     <Text>Hey</Text>
-  //   </View>
-  // );
 };
 
 export default ResolveAuthScreen;

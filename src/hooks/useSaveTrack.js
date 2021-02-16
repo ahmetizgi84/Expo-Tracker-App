@@ -3,14 +3,19 @@ import { useContext } from "react";
 import { Context as TrackContext } from "../context/TrackContext";
 import { Context as LocationContext } from "../context/LocationContext";
 
+import * as RootNavigation from "../navigationRef";
+
 export default () => {
   const { createTrack } = useContext(TrackContext);
   const {
     state: { name, locations },
+    reset,
   } = useContext(LocationContext);
 
-  const saveTrack = () => {
-    createTrack(name, locations);
+  const saveTrack = async () => {
+    await createTrack(name, locations);
+    reset();
+    RootNavigation.navigate("StackFlow");
   };
 
   return [saveTrack];
